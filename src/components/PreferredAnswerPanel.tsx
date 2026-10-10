@@ -6,7 +6,7 @@ import InfoPopover from "./InfoPopover";
 interface PreferredAnswerPanelProps {
   sessionId: string;
   question: string;
-  /** Flint's latest directional draft — pre-fill when no saved answer yet. */
+  /** FlintGuide's latest directional draft — pre-fill when no saved answer yet. */
   suggestedAnswer?: string;
   onSaved?: () => void;
   /** When true, body starts collapsed to save vertical space (user can expand). */
@@ -16,7 +16,7 @@ interface PreferredAnswerPanelProps {
 type SaveState = "idle" | "saving" | "saved" | "error";
 
 /**
- * Lets the user tailor and save a preferred answer that Flint serves instantly in Live.
+ * Lets the user tailor and save a preferred answer that FlintGuide serves instantly in Live.
  */
 export default function PreferredAnswerPanel({
   sessionId,
@@ -90,7 +90,7 @@ export default function PreferredAnswerPanel({
         <div className="preferred-answer-panel__header-actions">
           <InfoPopover ariaLabel="How tailoring for Live works">
             <p>
-              Flint&apos;s draft is a starting point. Edit it into words you would actually
+              FlintGuide&apos;s draft is a starting point. Edit it into words you would actually
               say — first person, natural, grounded in your real experience. Saved answers
               appear instantly during your live interview.
             </p>
@@ -118,7 +118,7 @@ export default function PreferredAnswerPanel({
       {errorMsg && <p className="preferred-answer-panel__error">{errorMsg}</p>}
       {saveState === "saved" && (
         <p className="preferred-answer-panel__success">
-          Saved — Flint will use this answer in Live for this question.
+          Saved — FlintGuide will use this answer in Live for this question.
         </p>
       )}
 
@@ -129,7 +129,7 @@ export default function PreferredAnswerPanel({
             className="preferred-answer-panel__btn preferred-answer-panel__btn--secondary"
             onClick={handleUseSuggestion}
           >
-            Use Flint draft
+            Use FlintGuide draft
           </button>
         )}
         <button

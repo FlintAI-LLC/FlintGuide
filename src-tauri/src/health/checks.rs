@@ -169,7 +169,7 @@ fn check_system_audio_loopback_linux() -> HealthCheckResult {
         return warn(
             HealthCheck::SystemAudioLoopback,
             "System audio loopback may work, but private mode requires Wayland.",
-            "PipeWire is required. Flint captures system audio from your default sink's .monitor source — do NOT run `pactl load-module module-loopback` (that routes your mic to your speakers).",
+            "PipeWire is required. FlintGuide captures system audio from your default sink's .monitor source — do NOT run `pactl load-module module-loopback` (that routes your mic to your speakers).",
         );
     }
 
@@ -231,7 +231,7 @@ fn whisper_model_missing_fix(recommended: WhisperModel) -> String {
          Or paste this one-liner (same result):\n\
          mkdir -p ~/.cache/whisper && curl -L --progress-bar -o ~/.cache/whisper/{model_file} \"https://huggingface.co/ggerganov/whisper.cpp/resolve/main/{model_file}\"\n\
          \n\
-         When the download finishes, click Re-run health check (or restart Flint). The Whisper row should turn green.\n\
+         When the download finishes, click Re-run health check (or restart FlintGuide). The Whisper row should turn green.\n\
          Tip: if you are not in the Flint folder, open a terminal and cd into it first, then run the script."
     )
 }
@@ -386,7 +386,7 @@ fn check_os_keychain() -> HealthCheckResult {
             fail(
                 HealthCheck::OsKeychain,
                 "Could not write to the OS keychain.",
-                "Grant Flint access to the system credential store, then retry. On Linux, unlock your login keyring.",
+                "Grant FlintGuide access to the system credential store, then retry. On Linux, unlock your login keyring.",
             ),
         );
     }
@@ -419,7 +419,7 @@ fn check_os_keychain() -> HealthCheckResult {
     )
 }
 
-/// When the round-trip probe fails but existing Flint credentials are readable
+/// When the round-trip probe fails but existing FlintGuide credentials are readable
 /// (common on Linux when the login keyring is locked for writes), downgrade to
 /// a warning so dev sessions are not blocked.
 fn keychain_probe_failure_or_warn(result: HealthCheckResult) -> HealthCheckResult {
@@ -429,7 +429,7 @@ fn keychain_probe_failure_or_warn(result: HealthCheckResult) -> HealthCheckResul
     if keychain::get_auth_token().is_ok() {
         return warn(
             HealthCheck::OsKeychain,
-            "Keychain probe failed, but existing Flint credentials are readable.",
+            "Keychain probe failed, but existing FlintGuide credentials are readable.",
             result.fix_instruction.unwrap_or_else(|| {
                 "Unlock your login keyring if you need to store new API keys.".into()
             }),
@@ -466,7 +466,7 @@ fn check_local_sqlite() -> HealthCheckResult {
         Err(_) => fail(
             HealthCheck::LocalSqlite,
             "Local SQLite database could not be created or written.",
-            "Check disk space and permissions for your Flint app data directory.",
+            "Check disk space and permissions for your FlintGuide app data directory.",
         ),
     }
 }
@@ -524,12 +524,12 @@ async fn check_supabase_connection(config: Option<&SupabaseConfig>) -> HealthChe
         ),
         Err(err) if err.is_timeout() || err.is_connect() => fail(
             HealthCheck::SupabaseConnection,
-            "Flint could not reach the auth service. Check your connection.",
+            "FlintGuide could not reach the auth service. Check your connection.",
             "Verify internet access and that your Supabase project URL is correct.",
         ),
         Err(_) => fail(
             HealthCheck::SupabaseConnection,
-            "Flint could not reach the auth service. Check your connection.",
+            "FlintGuide could not reach the auth service. Check your connection.",
             "Check your network and Supabase project status, then retry.",
         ),
     }
@@ -541,7 +541,7 @@ fn check_global_hotkey() -> HealthCheckResult {
         return warn(
             HealthCheck::GlobalHotkey,
             "Wayland session — Ctrl+Alt+Space is often blocked by the compositor.",
-            "With Flint focused, use Ctrl+Shift+Space (Linux fallback), F8 (dev), or Ctrl+Enter in Rehearsal. Ctrl+Alt+Space may work on X11/macOS/Windows.",
+            "With FlintGuide focused, use Ctrl+Shift+Space (Linux fallback), F8 (dev), or Ctrl+Enter in Rehearsal. Ctrl+Alt+Space may work on X11/macOS/Windows.",
         );
     }
     warn(
@@ -556,7 +556,7 @@ fn check_panic_hotkey() -> HealthCheckResult {
     if is_wayland_session() {
         return warn(
             HealthCheck::PanicHotkey,
-            "Wayland session — Ctrl+Alt+Shift+Space hides the overlay while Flint is focused.",
+            "Wayland session — Ctrl+Alt+Shift+Space hides the overlay while FlintGuide is focused.",
             "Bind a desktop shortcut if you need panic hide when another app has focus.",
         );
     }
@@ -646,7 +646,7 @@ pub fn check_echo_cancellation() -> HealthCheckResult {
              `pactl load-module module-echo-cancel use_master_format=1 \
              aec_method=webrtc source_name=echo-cancel-source \
              sink_name=echo-cancel-sink`. \
-             Then set `FLINT_MIC_SOURCE=echo-cancel-source` before starting Flint.",
+             Then set `FLINT_MIC_SOURCE=echo-cancel-source` before starting FlintGuide.",
         )
     }
     #[cfg(target_os = "macos")]
@@ -711,7 +711,7 @@ pub fn check_system_audio_isolation() -> HealthCheckResult {
                  live sessions would duplicate every utterance on both channels \
                  and never capture real interviewer audio.",
                 "Install pipewire-pulse (provides the ALSA \"pulse\" plugin: \
-                 `sudo apt install pipewire-pulse`), then restart Flint. This is \
+                 `sudo apt install pipewire-pulse`), then restart FlintGuide. This is \
                  required for system-audio loopback to work independently of \
                  the microphone.",
             );

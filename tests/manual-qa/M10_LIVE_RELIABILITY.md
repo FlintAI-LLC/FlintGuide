@@ -38,6 +38,6 @@
 | Question chunking / Q button | **FAIL UX** — interviewer utterance split across many short VAD lines; each line has its own **Q**, so one click only answers a fragment (“Himself.” / “So...” / half-question) |
 | Auto-detect | Fires on fragments; often wrong boundary |
 | Answer context quality | **Weak** — RAG/LLM gets fragment + noisy transcript, not full question + clean session context |
-| Workaround | Wait until interviewer **finishes**; press **Ctrl+Q** (or trigger hotkey with Flint focused) once — uses rolling System buffer, not a single tiny Q row. Prefer wired headphones; avoid BT HFP for Zoom speaker |
+| Workaround | Wait until interviewer **finishes**; press **Ctrl+Q** (or trigger hotkey with FlintGuide focused) once — uses rolling System buffer, not a single tiny Q row. Prefer wired headphones; avoid BT HFP for Zoom speaker |
 
 **M10 status:** loopback path workable with correct output device; **question-boundary + WER + context** remain open soft issues (not L2 regression).

@@ -24,7 +24,7 @@ The following workspace rules autoload from `.cursor/rules/` and need no attachm
 The fenced block below is the prompt itself. The outer fence uses **four** backticks so inner triple-backtick code blocks render correctly when pasted.
 
 ````
-You are the Phase 7 release reviewer for Flint. Perform a full implementation review — NOT a design brainstorm — against shipped code on branch `chore/phase7-security-audit`.
+You are the Phase 7 release reviewer for FlintGuide. Perform a full implementation review — NOT a design brainstorm — against shipped code on branch `chore/phase7-security-audit`.
 
 ## Authoritative references (must be attached before starting)
 

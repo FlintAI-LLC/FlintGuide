@@ -9,17 +9,17 @@ Use this after merge — do **not** mark PASS without device evidence.
 
 ## Prerequisites
 
-- Linux with **PipeWire** + **Wayland** session (Flint v1 target)
+- Linux with **PipeWire** + **Wayland** session (FlintGuide v1 target)
 - `pipewire-pulse` installed (HealthCheck `system_audio_isolation` depends on pulse-first selection)
 - Headphones optional but recommended to avoid speaker→mic bleed
-- Flint build: `npm run dev:clean` (dev) or a signed/release build
+- FlintGuide build: `npm run dev:clean` (dev) or a signed/release build
 - `RUST_LOG=info` available if you need to capture logs on failure
 
 ---
 
 ## Step 1 — HealthCheck
 
-1. Launch Flint and open **Health Check** (onboarding or Settings).
+1. Launch FlintGuide and open **Health Check** (onboarding or Settings).
 2. Confirm **`system_audio_isolation`** is **Pass** or an acceptable **Warn** with actionable fix text.
 3. If **Fail:** follow the fix instruction (typically install `pipewire-pulse` / verify PipeWire). **Stop here** — do not proceed to live audio until this passes or is explained.
 

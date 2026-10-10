@@ -375,7 +375,7 @@ export default function SessionDesign({
         {/* Header */}
         <div className="sd-header">
           <h1>New Session</h1>
-          <p>Fill in your context — Flint will build a digest to prepare your session.</p>
+          <p>Fill in your context — FlintGuide will build a digest to prepare your session.</p>
         </div>
 
         {onImportFromSmartResume && (
@@ -447,7 +447,7 @@ export default function SessionDesign({
               <strong>Phone interview mode</strong>
               <span className="sd-hint" style={{ display: "block", marginTop: 4 }}>
                 {phoneCallMode
-                  ? "Interviewer is on a phone call near your laptop — Flint captures both voices from the microphone. You can still override this in Settings."
+                  ? "Interviewer is on a phone call near your laptop — FlintGuide captures both voices from the microphone. You can still override this in Settings."
                   : "Default: system audio loopback (Zoom, Meet, browser tabs). Enable for speakerphone calls next to the laptop."}
               </span>
             </span>

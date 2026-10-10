@@ -9,7 +9,7 @@ until each scenario has an explicit pass/fail recorded here or in linked QA note
 On Linux, cpal's ALSA host can enumerate a native `"pipewire"` PCM plugin
 *before* the `"pulse"` PCM plugin. `find_system_device()` used to accept
 whichever of the two it found first. The native `pipewire` plugin does not
-honour the `PULSE_SOURCE` env var Flint sets to target the sink monitor — it
+honour the `PULSE_SOURCE` env var FlintGuide sets to target the sink monitor — it
 just opens PipeWire's default *capture* node, which is the same node the
 microphone stream opens. Result: System and Mic captured identical audio
 (every utterance duplicated on both channels, real loopback/interviewer
@@ -32,8 +32,8 @@ Documented in `tests/manual-qa/M3_LINUX_FINDINGS.md`:
 
 | Item | Status | Notes |
 | --- | --- | --- |
-| Wayland global hotkeys without focus | **Open P2** | `tauri-plugin-global-shortcut` only fires when Flint is focused on Wayland; xdg-desktop-portal integration is future work — **do not fabricate a fix** |
-| OBS / private mode on Wayland | **Accepted** | Full-monitor screencast may include Flint; content protection is best-effort |
+| Wayland global hotkeys without focus | **Open P2** | `tauri-plugin-global-shortcut` only fires when FlintGuide is focused on Wayland; xdg-desktop-portal integration is future work — **do not fabricate a fix** |
+| OBS / private mode on Wayland | **Accepted** | Full-monitor screencast may include FlintGuide; content protection is best-effort |
 | macOS private mode | Requires capture exclusion APIs | Verified via HealthCheck + `run_private_mode_self_test` at live start |
 
 ---
@@ -50,9 +50,9 @@ Run before v1 release. Attach logs (`RUST_LOG=info`) and HealthCheck screenshot.
 | --- | --- | --- | --- |
 | L1 | HealthCheck | `private_mode_api`, `system_audio_loopback`, `microphone_access`, `global_hotkey`, `system_audio_isolation` all pass/warn acceptably | ☑ 2026-07-10 — all Pass except `microphone_access` Warn (expected stub; never probes mic) |
 | L2 | System audio loopback | Play YouTube/browser audio — must appear on **System** channel only (not Mic). Zoom/Meet also valid (see `m13-live-pipeline-checklist.md` §A). **Do not mark PASS without device evidence.** | ☑ **PASS with headphones** (2026-07-10) — interviewer audio on INTERVIEWER only. **FAIL without headphones** — same utterance on YOU + INTERVIEWER (speaker→mic acoustic bleed; not pulse-first device collision). Checklist: [`L2-loopback-retest-checklist.md`](./L2-loopback-retest-checklist.md). Follow-ups (not L2): auto question detect **intermittent** (sometimes fires, sometimes needs UI **Q**); ~2s lag; open-speaker echo garbled YOU lines |
-| L3 | Hotkeys **with focus** | Ctrl+Alt+Space re-ask and Ctrl+Alt+Shift+Space panic hide work while Flint/overlay focused; Linux fallbacks (Ctrl+Shift+Space, F8 dev) documented in slice 3 | ☑ **PASS** (2026-07-10, Rehearsal, focused) — Ctrl+Alt+Space trigger OK; Ctrl+Alt+Shift+Space panic hide OK. Fallbacks Ctrl+Shift+Space / F8 = same trigger as primary (no separate UI); if primary already works, pressing them looks like “nothing new.” **Nit:** panic hide leaves shell chrome visible (FLINT / New session / Past sessions / Settings / window − □ ×) — overlay panels hide, title bar does not |
+| L3 | Hotkeys **with focus** | Ctrl+Alt+Space re-ask and Ctrl+Alt+Shift+Space panic hide work while FlintGuide/overlay focused; Linux fallbacks (Ctrl+Shift+Space, F8 dev) documented in slice 3 | ☑ **PASS** (2026-07-10, Rehearsal, focused) — Ctrl+Alt+Space trigger OK; Ctrl+Alt+Shift+Space panic hide OK. Fallbacks Ctrl+Shift+Space / F8 = same trigger as primary (no separate UI); if primary already works, pressing them looks like “nothing new.” **Nit:** panic hide leaves shell chrome visible (FLINT / New session / Past sessions / Settings / window − □ ×) — overlay panels hide, title bar does not |
 | L4 | Hotkeys **without focus** | Record pass/fail — expected fail on Wayland until portal work lands | ☑ **FAIL (accepted P2)** (2026-07-10) — none of Ctrl+Alt+Space, Ctrl+Shift+Space, F8, or Ctrl+Alt+Shift+Space work when another app has focus. Matches known Wayland global-shortcut limitation |
-| L5 | OBS / screen capture | Start OBS full-display capture; note whether Flint overlay is visible (document outcome) | ☑ **VISIBLE in OBS** (2026-07-10, Wayland) — Display Capture showed Flint in Rehearsal and Live preview. Accepted on Wayland (content protection best-effort). Recording file not found after stop (OBS RecFilePath=`~/`, RecEncoder=nvenc — may have failed to write); preview evidence sufficient for L5 |
+| L5 | OBS / screen capture | Start OBS full-display capture; note whether FlintGuide overlay is visible (document outcome) | ☑ **VISIBLE in OBS** (2026-07-10, Wayland) — Display Capture showed FlintGuide in Rehearsal and Live preview. Accepted on Wayland (content protection best-effort). Recording file not found after stop (OBS RecFilePath=`~/`, RecEncoder=nvenc — may have failed to write); preview evidence sufficient for L5 |
 
 ### Linux run log — 2026-07-10 (Wayland + PipeWire)
 
@@ -66,7 +66,7 @@ Run before v1 release. Attach logs (`RUST_LOG=info`) and HealthCheck screenshot.
 | Post-session summary | **FAIL / unavailable** — after ending Live, UI shows “Summary unavailable for this session.” (reproduced 2026-07-10). Frontend shows this when `generate_session_summary` returns non-JSON or invoke errors; soft fallback JSON would instead show “rate limited or offline…”. Non-blocking for L2/M10; park for summary JSON extraction / provider fix |
 | L3 hotkeys (Rehearsal, focused) | **PASS** — Ctrl+Alt+Space trigger OK; panic hide (Ctrl+Alt+Shift+Space) OK. Ctrl+Shift+Space / F8 are **aliases** of the same trigger (for when Ctrl+Alt is blocked); no separate effect when primary already works. Panic hide leaves **title/nav bar** visible (private mode nit on shell screens) |
 | L4 hotkeys (unfocused) | **FAIL (accepted P2)** — no hotkeys work when browser/other app focused; expected on Wayland until portal integration |
-| L5 OBS Display Capture | **VISIBLE** — Flint shown in OBS preview for Rehearsal + Live. Accepted Wayland outcome. Recording file missing after Stop (check `~/` for `YYYY-MM-DD HH-MM-SS.mkv`; NVENC encoder may have blocked write) |
+| L5 OBS Display Capture | **VISIBLE** — FlintGuide shown in OBS preview for Rehearsal + Live. Accepted Wayland outcome. Recording file missing after Stop (check `~/` for `YYYY-MM-DD HH-MM-SS.mkv`; NVENC encoder may have blocked write) |
 | M10 Zoom live (standard) | **Partial PASS** (2026-07-10) — works after non-BT output + headphones. Issues: BT HFP → no/watchdog audio; transcript WER poor; **Q per VAD chunk** splits questions so click answers half-question; context/answers weak. Prefer **Ctrl+Q once at end of question**. Details: `M10_LIVE_RELIABILITY.md` |
 | Summary / Q / Copy fix | **Engineering** — PR `fix/qa-summary-transcript-ux`: JSON extract for post-session summary; Q sends full merged utterance; live Copy via arboard. Device retest after merge. |
 

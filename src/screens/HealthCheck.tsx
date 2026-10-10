@@ -77,10 +77,10 @@ function PlatformAudioGuidance({ profile }: { profile: HardwareProfileDto }) {
     return (
       <div className="platform-banner info" role="note">
         PipeWire exposes system audio via each sink&apos;s{" "}
-        <code>.monitor</code> source — Flint uses that automatically.{" "}
+        <code>.monitor</code> source — FlintGuide uses that automatically.{" "}
         <strong>Do not</strong> run{" "}
         <code>pactl load-module module-loopback</code>; it routes your mic to
-        your speakers and persists after Flint exits. If you already ran it,
+        your speakers and persists after FlintGuide exits. If you already ran it,
         undo with: <code>{PIPEWIRE_CLEANUP_CMD}</code>
       </div>
     );
@@ -225,7 +225,7 @@ const HealthCheck = ({ onComplete }: HealthCheckProps) => {
       <div className="health-check-card">
         <h1 className="health-check-title">Installation health check</h1>
         <p className="health-check-subtitle">
-          Flint verifies your device and environment before your first session.
+          FlintGuide verifies your device and environment before your first session.
         </p>
 
         {x11Warning ? (

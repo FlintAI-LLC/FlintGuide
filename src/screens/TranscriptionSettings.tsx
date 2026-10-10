@@ -134,7 +134,7 @@ export default function TranscriptionSettings({ onBack }: TranscriptionSettingsP
         )}
         <h2 className="provider-settings__title">Transcription</h2>
         <p className="provider-settings__subtitle">
-          Choose how Flint turns speech into text. Whisper runs entirely on your
+          Choose how FlintGuide turns speech into text. Whisper runs entirely on your
           device. Deepgram is a cloud service and requires explicit opt-in.
         </p>
       </div>

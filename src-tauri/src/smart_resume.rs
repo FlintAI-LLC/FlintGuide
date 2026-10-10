@@ -96,7 +96,7 @@ fn map_status_error(status: reqwest::StatusCode, body: &str) -> String {
         if let Some(detail) = json.get("detail").and_then(|v| v.as_str()) {
             return match status.as_u16() {
                 404 => {
-                    "This link has expired. Return to Smart Resume and click Open in Flint again."
+                    "This link has expired. Return to Smart Resume and click Open in FlintGuide again."
                         .to_string()
                 }
                 429 => "Too many requests. Please wait a moment and try again.".to_string(),
@@ -105,7 +105,7 @@ fn map_status_error(status: reqwest::StatusCode, body: &str) -> String {
         }
     }
     match status.as_u16() {
-        404 => "This link has expired. Return to Smart Resume and click Open in Flint again."
+        404 => "This link has expired. Return to Smart Resume and click Open in FlintGuide again."
             .to_string(),
         429 => "Too many requests. Please wait a moment and try again.".to_string(),
         _ => "Could not import from Smart Resume. Please try again.".to_string(),

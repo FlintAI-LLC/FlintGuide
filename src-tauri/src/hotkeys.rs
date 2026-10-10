@@ -1,4 +1,4 @@
-//! Global hotkey registration for Flint's Ctrl+Option/Alt chord system.
+//! Global hotkey registration for FlintGuide's Ctrl+Option/Alt chord system.
 //!
 //! Hotkey contract (§FR-5.11):
 //!   Ctrl+Alt+Space       — manual trigger (React handles tap/hold/double-tap timing)
@@ -36,7 +36,7 @@ const SHORTCUT_TRIGGER_LINUX: &str = "Control+Shift+Space";
 #[cfg(all(debug_assertions, target_os = "linux"))]
 const SHORTCUT_TRIGGER_DEV: &str = "F8";
 
-/// Register all Flint global shortcuts.
+/// Register all FlintGuide global shortcuts.
 pub fn register_hotkeys<R: Runtime>(app: &AppHandle<R>) {
     let app_trigger = app.clone();
     let app_panic = app.clone();

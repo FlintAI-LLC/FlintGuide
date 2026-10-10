@@ -85,7 +85,7 @@ Local DB URL: `postgresql://postgres:postgres@127.0.0.1:54322/postgres` (`npx su
 
 ## Production auth URLs
 
-Flint reads Supabase at runtime via environment variables (not committed secrets):
+FlintGuide reads Supabase at runtime via environment variables (not committed secrets):
 
 | Variable | Production value |
 | --- | --- |
@@ -102,7 +102,7 @@ In **Authentication → URL configuration**:
 | --- | --- |
 | Site URL | Your production landing or app origin (e.g. `https://flint.app`) |
 | Redirect URLs | `flint://auth/callback` (required for release desktop OAuth) |
-| | `http://127.0.0.1:1420/oauth-callback.html` (required for **local dev** — Vite bridge shows “Open Flint” + Ctrl+W) |
+| | `http://127.0.0.1:1420/oauth-callback.html` (required for **local dev** — Vite bridge shows “Open FlintGuide” + Ctrl+W) |
 
 Local dev mirrors this in `supabase/config.toml` → `[auth].additional_redirect_urls`.
 

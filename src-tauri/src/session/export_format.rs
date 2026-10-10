@@ -59,7 +59,7 @@ pub fn format_session_json(session: &SessionExport) -> Result<String> {
 
 pub fn format_session_text(session: &SessionExport) -> String {
     let mut out = String::new();
-    out.push_str("Flint Session Export\n");
+    out.push_str("FlintGuide Session Export\n");
     out.push_str("====================\n\n");
     out.push_str(&format!("Session: {}\n", session.name));
     out.push_str(&format!("Type: {}\n", session.session_type));

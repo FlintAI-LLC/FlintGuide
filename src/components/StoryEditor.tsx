@@ -47,7 +47,7 @@ export default function StoryEditor({
     <div className="story-editor">
       <p className="story-editor__hint">
         Link a personal story or project notes to a specific interview question.
-        Flint embeds it into your context immediately.
+        FlintGuide embeds it into your context immediately.
       </p>
       <label className="story-editor__label" htmlFor="story-question">
         Interview question

@@ -41,7 +41,7 @@ export function PanicRestoreShell({ children }: PanicRestoreShellProps) {
             cursor: "pointer",
           }}
         >
-          Show Flint (Ctrl+Alt+Shift+Space)
+          Show FlintGuide (Ctrl+Alt+Shift+Space)
         </button>
       </div>
     );

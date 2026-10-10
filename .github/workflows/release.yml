@@ -128,9 +128,9 @@ jobs:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
         with:
           tagName: ${{ inputs.tag || github.ref_name }}
-          releaseName: "Flint ${{ inputs.tag || github.ref_name }}"
+          releaseName: "FlintGuide ${{ inputs.tag || github.ref_name }}"
           releaseBody: |
-            Desktop installers for Flint.
+            Desktop installers for FlintGuide.
 
             macOS builds are notarized when Apple signing secrets are configured.
             Windows builds are Authenticode-signed when `WINDOWS_CERTIFICATE` is set.

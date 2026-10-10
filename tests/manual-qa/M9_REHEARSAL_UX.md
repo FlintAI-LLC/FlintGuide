@@ -15,7 +15,7 @@ and window/display controls.
 
 | Step | Expected |
 |------|----------|
-| Open any Flint screen | Small **triangle grip** visible at bottom-right corner |
+| Open any FlintGuide screen | Small **triangle grip** visible at bottom-right corner |
 | Hover grip | Cursor becomes diagonal resize; grip brightens |
 | Drag grip | Frameless window resizes from bottom-right |
 

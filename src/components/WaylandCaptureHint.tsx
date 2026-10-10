@@ -62,7 +62,7 @@ const WaylandCaptureHint = () => {
       </span>
       <span style={{ color: "#fde68a", flex: 1 }}>
         When the screen-share dialog opens, share a specific window — do{" "}
-        <strong>not</strong> select the Flint overlay or your whole desktop.
+        <strong>not</strong> select the FlintGuide overlay or your whole desktop.
         Wayland has no protocol to hide windows from capture.
       </span>
       <button

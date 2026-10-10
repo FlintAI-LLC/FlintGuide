@@ -242,7 +242,7 @@ export default function DigestReview({
         <div className="dr-header">
           <div>
             <h1>Digest Review</h1>
-            <p>Edit any field before confirming. Flint will pre-warm the top 5 questions.</p>
+            <p>Edit any field before confirming. FlintGuide will pre-warm the top 5 questions.</p>
           </div>
           <button
             className="dr-btn-ghost"

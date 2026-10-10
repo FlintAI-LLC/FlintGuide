@@ -6,7 +6,7 @@ export interface LiveHelpDrawerProps {
 const SECTIONS = [
   {
     title: "Ask now (Ctrl+Q)",
-    body: "Marks the end of the interviewer's question. Flint sends the accumulated interviewer span to the Answer thread. Use it in phone mode when auto-detection is unreliable.",
+    body: "Marks the end of the interviewer's question. FlintGuide sends the accumulated interviewer span to the Answer thread. Use it in phone mode when auto-detection is unreliable.",
   },
   {
     title: "Answer panel",

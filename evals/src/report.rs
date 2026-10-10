@@ -75,7 +75,7 @@ impl Report {
     pub fn render_markdown(&self) -> String {
         use std::fmt::Write;
         let mut out = String::new();
-        let _ = writeln!(out, "# Flint eval report\n");
+        let _ = writeln!(out, "# FlintGuide eval report\n");
         let _ = writeln!(out, "Run: `{}`  ", self.run_id);
         let _ = writeln!(out, "Prompt version: `{}`\n", self.prompt_version);
 

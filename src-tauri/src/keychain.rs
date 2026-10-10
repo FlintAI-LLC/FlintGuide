@@ -21,7 +21,7 @@ const DEEPGRAM_CONSENT_ENTRY: &str = "deepgram_transcription_consent_accepted";
 const OAUTH_PKCE_VERIFIER_ENTRY: &str = "oauth_pkce_verifier";
 
 /// Every LLM provider that may have an API key stored under
-/// `api_key_{provider}`. Kept in sync with the providers Flint can connect
+/// `api_key_{provider}`. Kept in sync with the providers FlintGuide can connect
 /// to so [`clear_all_user_secrets`] never leaves orphan entries behind.
 pub const KNOWN_API_PROVIDERS: &[&str] = &[
     "groq",
@@ -198,7 +198,7 @@ pub fn clear_account_secrets() -> Result<()> {
     ])
 }
 
-/// Purge every keychain entry Flint controls, including BYOK API keys.
+/// Purge every keychain entry FlintGuide controls, including BYOK API keys.
 ///
 /// Used by explicit "remove all secrets" flows — not by default account deletion.
 #[allow(dead_code)]

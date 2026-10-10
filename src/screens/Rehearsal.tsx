@@ -48,7 +48,7 @@ export interface RehearsalProps {
   /** Clear answer/visual panels (e.g. after re-ingest). */
   resetPanelsOnEntry?: boolean;
   onResetPanelsHandled?: () => void;
-  onComplete: () => void;
+  onComplete: () => void | Promise<void>;
   onReturnToSetup?: () => void;
   onOpenSettings?: () => void;
   onStartMock?: () => void;
@@ -363,7 +363,11 @@ const Rehearsal = ({
       setError(String(e));
       return;
     }
-    onComplete();
+    try {
+      await onComplete();
+    } catch (e) {
+      setError(String(e));
+    }
   };
 
   const handleTestLiveSession = async () => {
@@ -458,7 +462,7 @@ const Rehearsal = ({
             />
             <InfoPopover ariaLabel="How rehearsal feeds Live">
               <p>
-                <strong>Ask → tailor → save for Live.</strong> Flint drafts from your prep
+                <strong>Ask → tailor → save for Live.</strong> FlintGuide drafts from your prep
                 context. Edit each answer into your own words, then{" "}
                 <strong>Save as preferred answer</strong>. Saved scripts appear instantly
                 when the same question comes up in your live interview.

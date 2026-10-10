@@ -15,9 +15,9 @@ and attach them to the QA report.
 - Whisper model installed at `~/.cache/whisper/ggml-small.en.bin` (or the
   tier-appropriate model).
 - Groq or DeepSeek API key configured in keychain.
-- Two devices: laptop running Flint, second device running interviewer
+- Two devices: laptop running FlintGuide, second device running interviewer
   audio.
-- Wayland screencast permission granted to the Flint window.
+- Wayland screencast permission granted to the FlintGuide window.
 - `~/.flint/metrics.log` cleared between runs:
   `rm -f ~/.flint/metrics.log` so each run produces exactly one summary
   line.
@@ -58,7 +58,7 @@ Goal: stress test of the Jaccard echo gate and the new directional
 warning.
 
 Disable AEC via `pactl unload-module module-echo-cancel` (or simply
-revert any `FLINT_MIC_SOURCE` override and restart Flint).
+revert any `FLINT_MIC_SOURCE` override and restart FlintGuide).
 
 - [ ] HealthCheck shows `echo_cancellation: warn` with the hint to load
   `module-echo-cancel`.
@@ -138,7 +138,7 @@ are advisory but block any "stable" claim.
 When a scenario fails, attach:
 
 1. The relevant `metrics.log` line (`session_audit_summary`).
-2. The last 200 lines of the Flint stderr log.
+2. The last 200 lines of the FlintGuide stderr log.
 3. The audio capture WAV from the affected mock turn (if mock).
 4. A short note on which slice the regression appears tied to.
 

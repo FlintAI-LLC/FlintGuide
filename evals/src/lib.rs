@@ -1,4 +1,4 @@
-//! Flint prompt evaluation harness (Phase 7.2, design doc §20).
+//! FlintGuide prompt evaluation harness (Phase 7.2, design doc §20).
 //!
 //! Runs a curated 200-question bank against every prompt variant
 //! (`gpt.txt`, `claude.txt`, `llama.txt`) and produces structured scores for

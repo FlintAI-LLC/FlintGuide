@@ -77,7 +77,7 @@ export default function AddContextPanel({
       >
         <span>⚠</span>
         <span style={{ flex: 1 }}>
-          No personal story found for this question — Flint used general knowledge.
+          No personal story found for this question — FlintGuide used general knowledge.
           Add your own experience below.
         </span>
         <span style={{ color: "#6b7280", fontSize: "10px" }}>
@@ -96,7 +96,7 @@ export default function AddContextPanel({
             <>
               <p style={{ color: "#9ca3af", margin: "0 0 8px", lineHeight: 1.5 }}>
                 Paste your story, project details, or talking points for this
-                question. Flint will embed and index it immediately — no need to
+                question. FlintGuide will embed and index it immediately — no need to
                 leave Rehearsal.
               </p>
               <textarea

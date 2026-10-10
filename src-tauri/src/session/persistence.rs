@@ -639,7 +639,7 @@ fn merge_mock_turn_rows(rows: Vec<MockTurn>) -> Vec<MockTurn> {
 // Persistence
 // ──────────────────────────────────────────────────────────────────────────────
 
-/// Write-through SQLite persistence for a Flint session.
+/// Write-through SQLite persistence for a FlintGuide session.
 ///
 /// `rusqlite::Connection` is `Send` but not `Sync`; wrapping it in `Mutex`
 /// makes `SessionPersistence: Send + Sync`, which is required by
@@ -660,7 +660,7 @@ impl SessionPersistence {
     ///   corrupted file produces a hard error with the full sqlite report
     ///   so the user can be guided to reset local data.
     /// * `PRAGMA user_version` is rejected when greater than
-    ///   [`SCHEMA_VERSION`] — that means the file came from a newer Flint
+    ///   [`SCHEMA_VERSION`] — that means the file came from a newer FlintGuide
     ///   build and downgrading would silently drop columns.
     pub fn new(db_path: &str) -> Result<Self> {
         let conn =
@@ -2829,7 +2829,7 @@ impl StatePersister for SessionPersistence {
 // ──────────────────────────────────────────────────────────────────────────────
 
 /// Refuse to open a database whose `user_version` is ahead of the version
-/// this build knows how to handle. Migrating an older Flint binary against
+/// this build knows how to handle. Migrating an older FlintGuide binary against
 /// a DB written by a newer one would silently drop columns added in the
 /// newer schema — fail loud instead.
 fn verify_user_version_compatible(conn: &rusqlite::Connection) -> Result<()> {
@@ -2838,7 +2838,7 @@ fn verify_user_version_compatible(conn: &rusqlite::Connection) -> Result<()> {
         .context("read user_version for compatibility check")?;
     if current > SCHEMA_VERSION {
         bail!(
-            "session database is from a newer Flint build (user_version={current}, \
+            "session database is from a newer FlintGuide build (user_version={current}, \
              this build supports up to {SCHEMA_VERSION}). Refusing to open to avoid \
              silent data loss."
         );
@@ -3402,7 +3402,10 @@ mod tests {
     fn future_schema_version_is_rejected() {
         let err = try_open_with_user_version(SCHEMA_VERSION + 10).unwrap_err();
         let msg = err.to_string();
-        assert!(msg.contains("newer Flint build"), "unexpected error: {msg}");
+        assert!(
+            msg.contains("newer FlintGuide build"),
+            "unexpected error: {msg}"
+        );
     }
 
     #[test]

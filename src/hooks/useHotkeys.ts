@@ -49,7 +49,7 @@ function isPanicChord(e: KeyboardEvent): boolean {
   return isLinuxPlatform() && metaHeld(e);
 }
 
-/** Wayland often blocks Ctrl+Alt+Space; tap-only fallback while Flint is focused. */
+/** Wayland often blocks Ctrl+Alt+Space; tap-only fallback while FlintGuide is focused. */
 function isLinuxShiftTrigger(e: KeyboardEvent): boolean {
   return (
     isLinuxPlatform() &&

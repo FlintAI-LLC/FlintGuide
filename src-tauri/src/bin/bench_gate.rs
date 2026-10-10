@@ -397,7 +397,7 @@ fn write_markdown(report: &Report, dir: &Path) -> Result<PathBuf> {
 
 fn render_markdown(report: &Report) -> String {
     let mut out = String::new();
-    out.push_str("# Flint Performance Benchmark Report\n\n");
+    out.push_str("# FlintGuide Performance Benchmark Report\n\n");
     out.push_str(&format!("Timestamp: `{}`\n\n", report.timestamp_utc));
     if let Some(sha) = &report.git_sha {
         out.push_str(&format!("Commit: `{sha}`\n\n"));

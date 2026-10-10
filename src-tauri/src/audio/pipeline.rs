@@ -688,7 +688,7 @@ async fn handle_transcription_result(
                         guard.mic_to_system_warned = true;
                         tracing::warn!(
                             "Mic audio appears to be looping back into the system audio \
-                             channel. Check your audio routing — Flint expects the system \
+                             channel. Check your audio routing — FlintGuide expects the system \
                              sink monitor as the loopback, not the mic itself."
                         );
                     } else {
@@ -1025,7 +1025,7 @@ fn maybe_warn_mixed_source(app_handle: &AppHandle, dedup: &SyncMutex<CrossChanne
         AudioRoutingWarningPayload {
             kind: "loopback_capturing_mic".to_string(),
             message: "Your microphone is bleeding into the system audio. Use headphones so \
-                      Flint can tell you and the interviewer apart."
+                      FlintGuide can tell you and the interviewer apart."
                 .to_string(),
         },
     );

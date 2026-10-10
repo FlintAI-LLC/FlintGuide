@@ -373,7 +373,7 @@ impl AudioCapture {
                  ({sys_name}) — loopback capture is not actually isolated from \
                  the microphone. Install pipewire-pulse (provides the ALSA \
                  \"pulse\" plugin) so system audio can route through your \
-                 default sink's monitor, then restart Flint."
+                 default sink's monitor, then restart FlintGuide."
             ));
         }
 
@@ -776,7 +776,7 @@ fn find_shareable_alsa_input(_host: &cpal::Host) -> Option<Device> {
 ///
 /// When `setup-pipewire-aec.sh` has run, PipeWire exposes a source named
 /// something like `echo-cancel-source` or `easyeffects_source`. We prefer
-/// this over the raw mic so the OS handles AEC before samples reach Flint.
+/// this over the raw mic so the OS handles AEC before samples reach FlintGuide.
 #[cfg(target_os = "linux")]
 fn find_echo_cancel_device(host: &cpal::Host) -> Option<Device> {
     let devs = host.input_devices().ok()?;

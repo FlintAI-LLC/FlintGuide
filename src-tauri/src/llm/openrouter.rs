@@ -1,7 +1,7 @@
 //! OpenRouter streaming provider — OpenAI-compatible gateway (design doc §27).
 //!
 //! Used as cloud fallback when Groq is rate-limited or unavailable.
-//! Default model matches Flint's Groq primary: Llama 3.3 70B Instruct.
+//! Default model matches FlintGuide's Groq primary: Llama 3.3 70B Instruct.
 
 use std::pin::Pin;
 use std::sync::Arc;
@@ -159,7 +159,7 @@ impl LLMProvider for OpenRouterProvider {
             )
             .header(CONTENT_TYPE, "application/json")
             .header("HTTP-Referer", "https://github.com/abzanganeh/flint")
-            .header("X-Title", "Flint")
+            .header("X-Title", "FlintGuide")
             .json(&body)
             .send()
             .await

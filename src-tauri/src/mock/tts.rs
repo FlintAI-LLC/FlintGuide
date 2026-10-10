@@ -18,7 +18,7 @@
 //! ```
 //!
 //! ## OpenAI TTS setup
-//! Store an OpenAI API key via the Flint settings panel — no extra config needed.
+//! Store an OpenAI API key via the FlintGuide settings panel — no extra config needed.
 
 use anyhow::{bail, Context, Result};
 use std::process::Stdio;

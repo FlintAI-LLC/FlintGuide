@@ -122,7 +122,7 @@ impl SupabaseAuth {
             400 => "Invalid credentials".to_string(),
             429 => "Too many attempts, try again later".to_string(),
             500..=599 => {
-                "Flint could not reach the auth service. Check your connection.".to_string()
+                "FlintGuide could not reach the auth service. Check your connection.".to_string()
             }
             _ => "Authentication failed. Please try again.".to_string(),
         }
@@ -134,7 +134,7 @@ impl SupabaseAuth {
 
     fn map_transport_error(err: reqwest::Error) -> anyhow::Error {
         if err.is_timeout() || err.is_connect() || err.is_request() {
-            anyhow!("Flint could not reach the auth service. Check your connection.")
+            anyhow!("FlintGuide could not reach the auth service. Check your connection.")
         } else {
             anyhow!("Authentication failed. Please try again.")
         }
@@ -369,7 +369,7 @@ mod tests {
         );
         assert_eq!(
             SupabaseAuth::user_facing_error(StatusCode::INTERNAL_SERVER_ERROR),
-            "Flint could not reach the auth service. Check your connection."
+            "FlintGuide could not reach the auth service. Check your connection."
         );
     }
 

@@ -109,7 +109,7 @@ const LivePreview = ({ sessionId, onGoLive, onBack }: LivePreviewProps) => {
   const handleConsentCancel = useCallback(() => {
     setShowConsentModal(false);
     window.alert(
-      "You must confirm recording consent before starting a live session. Flint cannot go live without it.",
+      "You must confirm recording consent before starting a live session. FlintGuide cannot go live without it.",
     );
     void (async () => {
       setBusy("cancel");
