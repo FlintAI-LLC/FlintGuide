@@ -35,10 +35,10 @@ const DEFAULT_MODEL: &str = "openai/gpt-oss-120b";
 const REQUEST_TIMEOUT: Duration = Duration::from_secs(30);
 /// 131,072 tokens — documented Groq context window for openai/gpt-oss-120b.
 const CONTEXT_WINDOW: usize = 131_072;
-/// 80% of 30 RPM free-tier.
+/// 80% of 30 RPM free-tier (`openai/gpt-oss-120b`).
 const RATE_LIMIT_RPM: u32 = 24;
-/// 80% of 30,000 TPM free-tier.
-const RATE_LIMIT_TPM: u32 = 24_000;
+/// 80% of 8,000 TPM free-tier for `openai/gpt-oss-120b` (Groq docs, developer plan).
+const RATE_LIMIT_TPM: u32 = 6_400;
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Request / response types
@@ -351,7 +351,34 @@ mod tests {
         let provider = GroqProvider::new(SecretString::new("key".into())).unwrap();
         let rl = provider.rate_limit();
         assert_eq!(rl.requests_per_minute, 24);
-        assert_eq!(rl.tokens_per_minute, 24_000);
+        assert_eq!(rl.tokens_per_minute, 6_400);
+    }
+
+    /// Groq retires models to Enterprise-only without a compile-time signal.
+    /// Denylist catches re-introducing a known-dead default.
+    #[test]
+    fn default_model_is_not_known_retired_groq_id() {
+        const RETIRED_OR_ENTERPRISE_ONLY: &[&str] = &["llama-3.3-70b-versatile"];
+        assert!(
+            !RETIRED_OR_ENTERPRISE_ONLY.contains(&DEFAULT_MODEL),
+            "DEFAULT_MODEL must not be a retired Groq id: {DEFAULT_MODEL}"
+        );
+        assert_eq!(DEFAULT_MODEL, "openai/gpt-oss-120b");
+    }
+
+    #[test]
+    fn build_request_serializes_default_model() {
+        let provider = GroqProvider::new(SecretString::new("key".into())).unwrap();
+        let req = provider.build_request(
+            "hello",
+            &CompletionConfig {
+                max_tokens: Some(10),
+                temperature: 0.0,
+                stream: true,
+            },
+        );
+        assert_eq!(req.model, DEFAULT_MODEL);
+        assert_eq!(req.messages[0].content, "hello");
     }
 
     /// Regression test for the corrupted-Mermaid-diagram bug: a `data: {...}`

@@ -138,7 +138,7 @@ const LiveSessionStatusBar = ({
             "or run `ollama serve` for a local fallback.";
           setQError(message);
           pushNotification({
-            id: `live-answer-error-${Date.now()}`,
+            id: crypto.randomUUID(),
             level: "warn",
             message,
           });
