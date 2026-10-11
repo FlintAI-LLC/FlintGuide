@@ -190,4 +190,61 @@ describe("LiveSessionStatusBar", () => {
       "No interviewer transcript captured",
     );
   });
+
+  it("returns to listening when the answer thread reports ok", async () => {
+    render(<LiveSessionStatusBar sessionId="session-1" />);
+    await waitFor(() => expect(getInterviewerSpanPreview).toHaveBeenCalled());
+
+    await act(async () => {
+      handlers.turnStarted?.({ question: "Tell me about yourself." });
+      handlers.answer?.({ token: "Sure" });
+    });
+    expect(screen.getByTestId("live-detection-indicator").textContent).toContain(
+      "Generating response…",
+    );
+
+    // The answer thread emits "ok", never "idle" — the indicator must clear.
+    await act(async () => {
+      handlers.threadStatus?.({ thread: "answer", status: "ok" });
+    });
+    expect(screen.getByTestId("live-detection-indicator").textContent).toContain(
+      "Listening…",
+    );
+    expect(screen.queryByTestId("live-q-error")).toBeNull();
+  });
+
+  it("surfaces an actionable error when every provider fails", async () => {
+    render(<LiveSessionStatusBar sessionId="session-1" />);
+    await waitFor(() => expect(getInterviewerSpanPreview).toHaveBeenCalled());
+
+    await act(async () => {
+      handlers.turnStarted?.({ question: "Tell me about yourself." });
+      handlers.threadStatus?.({ thread: "answer", status: "error" });
+    });
+
+    expect(screen.getByTestId("live-q-error").textContent).toContain(
+      "every AI provider failed",
+    );
+    expect(screen.getByTestId("live-detection-indicator").textContent).toContain(
+      "Listening…",
+    );
+    expect(pushNotification).toHaveBeenCalledWith(
+      expect.objectContaining({ level: "warn" }),
+    );
+  });
+
+  it("ignores visual thread status so the answer indicator is not cleared early", async () => {
+    render(<LiveSessionStatusBar sessionId="session-1" />);
+    await waitFor(() => expect(getInterviewerSpanPreview).toHaveBeenCalled());
+
+    await act(async () => {
+      handlers.turnStarted?.({ question: "Tell me about yourself." });
+      handlers.answer?.({ token: "Sure" });
+      handlers.threadStatus?.({ thread: "visual", status: "idle" });
+    });
+
+    expect(screen.getByTestId("live-detection-indicator").textContent).toContain(
+      "Generating response…",
+    );
+  });
 });

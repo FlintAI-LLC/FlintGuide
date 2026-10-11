@@ -28,10 +28,13 @@ use super::sse_lines::buffered_lines;
 // ──────────────────────────────────────────────────────────────────────────────
 
 const GROQ_BASE_URL: &str = "https://api.groq.com/openai/v1/chat/completions";
-const DEFAULT_MODEL: &str = "llama-3.3-70b-versatile";
+/// Groq moved `llama-3.3-70b-versatile` to Enterprise-only ("contact sales")
+/// in August 2026, so it 400s on an ordinary key. GPT-OSS 120B is the
+/// general-availability replacement at comparable quality and speed.
+const DEFAULT_MODEL: &str = "openai/gpt-oss-120b";
 const REQUEST_TIMEOUT: Duration = Duration::from_secs(30);
-/// 128K tokens — documented Groq context window for llama-3.3-70b-versatile.
-const CONTEXT_WINDOW: usize = 128_000;
+/// 131,072 tokens — documented Groq context window for openai/gpt-oss-120b.
+const CONTEXT_WINDOW: usize = 131_072;
 /// 80% of 30 RPM free-tier.
 const RATE_LIMIT_RPM: u32 = 24;
 /// 80% of 30,000 TPM free-tier.

@@ -127,8 +127,21 @@ const LiveSessionStatusBar = ({
         setDetectionPhase("generating");
       }),
       onThreadStatus(({ thread, status }) => {
-        if (thread === "answer" && status === "idle") {
-          setDetectionPhase("listening");
+        // The answer thread reports "ok" when a turn completes and "error"
+        // when every provider in the failover chain failed. It never reports
+        // "idle" — only the visual thread does.
+        if (thread !== "answer") return;
+        setDetectionPhase("listening");
+        if (status === "error") {
+          const message =
+            "No answer generated — every AI provider failed. Check Settings → API Keys, " +
+            "or run `ollama serve` for a local fallback.";
+          setQError(message);
+          pushNotification({
+            id: `live-answer-error-${Date.now()}`,
+            level: "warn",
+            message,
+          });
         }
       }),
     ];
@@ -151,7 +164,7 @@ const LiveSessionStatusBar = ({
         clearTimeout(processingTimerRef.current);
       }
     };
-  }, [setLastManualQuestion]);
+  }, [setLastManualQuestion, pushNotification]);
 
   const onSystemChunk = useCallback(
     (line: { text: string; speaker: string; timestamp: number }) => {
