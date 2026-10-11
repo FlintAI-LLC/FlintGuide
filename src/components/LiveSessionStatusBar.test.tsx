@@ -190,4 +190,80 @@ describe("LiveSessionStatusBar", () => {
       "No interviewer transcript captured",
     );
   });
+
+  it("returns to listening when the answer thread reports ok", async () => {
+    render(<LiveSessionStatusBar sessionId="session-1" />);
+    await waitFor(() => expect(getInterviewerSpanPreview).toHaveBeenCalled());
+
+    await act(async () => {
+      handlers.turnStarted?.({ question: "Tell me about yourself." });
+      handlers.answer?.({ token: "Sure" });
+    });
+    expect(screen.getByTestId("live-detection-indicator").textContent).toContain(
+      "Generating response…",
+    );
+
+    // The answer thread emits "ok", never "idle" — the indicator must clear.
+    await act(async () => {
+      handlers.threadStatus?.({ thread: "answer", status: "ok" });
+    });
+    expect(screen.getByTestId("live-detection-indicator").textContent).toContain(
+      "Listening…",
+    );
+    expect(screen.queryByTestId("live-q-error")).toBeNull();
+  });
+
+  it("surfaces an actionable error when every provider fails", async () => {
+    render(<LiveSessionStatusBar sessionId="session-1" />);
+    await waitFor(() => expect(getInterviewerSpanPreview).toHaveBeenCalled());
+
+    await act(async () => {
+      handlers.turnStarted?.({ question: "Tell me about yourself." });
+      handlers.threadStatus?.({ thread: "answer", status: "error" });
+    });
+
+    const errorText = screen.getByTestId("live-q-error").textContent ?? "";
+    expect(errorText).toContain("every AI provider failed");
+    expect(errorText).toContain("API Keys");
+    expect(errorText).toContain("ollama serve");
+    expect(screen.getByTestId("live-detection-indicator").textContent).toContain(
+      "Listening…",
+    );
+    expect(pushNotification).toHaveBeenCalledWith(
+      expect.objectContaining({
+        level: "warn",
+        message: expect.stringContaining("every AI provider failed"),
+      }),
+    );
+  });
+
+  it("clears a stale error banner when a new turn starts", async () => {
+    render(<LiveSessionStatusBar sessionId="session-1" />);
+    await waitFor(() => expect(getInterviewerSpanPreview).toHaveBeenCalled());
+
+    await act(async () => {
+      handlers.threadStatus?.({ thread: "answer", status: "error" });
+    });
+    expect(screen.getByTestId("live-q-error")).toBeTruthy();
+
+    await act(async () => {
+      handlers.turnStarted?.({ question: "Next question?" });
+    });
+    expect(screen.queryByTestId("live-q-error")).toBeNull();
+  });
+
+  it("does not clear the answer indicator on visual ok while answer is streaming", async () => {
+    render(<LiveSessionStatusBar sessionId="session-1" />);
+    await waitFor(() => expect(getInterviewerSpanPreview).toHaveBeenCalled());
+
+    await act(async () => {
+      handlers.turnStarted?.({ question: "Tell me about yourself." });
+      handlers.answer?.({ token: "Sure" });
+      handlers.threadStatus?.({ thread: "visual", status: "ok" });
+    });
+
+    expect(screen.getByTestId("live-detection-indicator").textContent).toContain(
+      "Generating response…",
+    );
+  });
 });

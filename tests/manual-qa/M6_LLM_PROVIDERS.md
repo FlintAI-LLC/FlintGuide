@@ -61,7 +61,7 @@ Run 15 directional-style prompts per provider. Record TTFT from first token even
 
 | Provider | P95 TTFT target | Notes |
 |----------|-----------------|-------|
-| Groq (`llama-3.3-70b-versatile`) | < 900 ms (fail PR > 900 ms) | Baseline |
+| Groq (`openai/gpt-oss-120b`) | < 900 ms (fail PR > 900 ms) | Baseline |
 | DeepSeek (`deepseek-chat`) | < 900 ms; ideal < 800 ms | Blocked if account has no balance |
 | OpenAI (`gpt-4o-mini`) | < 900 ms | Optional |
 | Anthropic (`claude-3-5-haiku`) | < 900 ms | Optional |

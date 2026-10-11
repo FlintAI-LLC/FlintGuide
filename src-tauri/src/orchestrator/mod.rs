@@ -1130,4 +1130,88 @@ mod tests {
             DetectedQuestionSource::Microphone
         ));
     }
+
+    fn mock_app_handle() -> tauri::AppHandle<tauri::test::MockRuntime> {
+        use tauri::test::{mock_builder, mock_context, noop_assets};
+        mock_builder()
+            .build(mock_context(noop_assets()))
+            .expect("mock app")
+            .handle()
+            .clone()
+    }
+
+    #[test]
+    fn collect_thread_text_provider_error_emits_answer_error_status() {
+        use std::sync::{Arc, Mutex};
+
+        use tauri::Listener;
+        use uuid::Uuid;
+
+        let app = mock_app_handle();
+        let captured: Arc<Mutex<Option<(String, String)>>> = Arc::new(Mutex::new(None));
+        let captured_clone = Arc::clone(&captured);
+        let _listener = app.listen("thread_status", move |event| {
+            let Ok(value) = serde_json::from_str::<serde_json::Value>(event.payload()) else {
+                return;
+            };
+            let thread = value.get("thread").and_then(|v| v.as_str()).unwrap_or_default();
+            let status = value.get("status").and_then(|v| v.as_str()).unwrap_or_default();
+            *captured_clone.lock().expect("lock") = Some((thread.to_string(), status.to_string()));
+        });
+
+        let session_id = Uuid::new_v4();
+        let (text, detail) = collect_thread_text(
+            Ok(Err(anyhow::anyhow!("groq 400"))),
+            session_id,
+            "answer",
+            &app,
+        );
+        assert!(text.is_empty());
+        let detail = detail.expect("error detail");
+        assert!(detail.contains("groq 400"));
+
+        let (thread, status) = captured.lock().expect("lock").clone().expect("thread_status");
+        assert_eq!(thread, "answer");
+        assert_eq!(status, "error");
+    }
+
+    #[test]
+    fn collect_thread_text_panic_emits_answer_error_status() {
+        use std::sync::{Arc, Mutex};
+
+        use tauri::Listener;
+        use uuid::Uuid;
+
+        let app = mock_app_handle();
+        let captured: Arc<Mutex<Option<(String, String)>>> = Arc::new(Mutex::new(None));
+        let captured_clone = Arc::clone(&captured);
+        let _listener = app.listen("thread_status", move |event| {
+            let Ok(value) = serde_json::from_str::<serde_json::Value>(event.payload()) else {
+                return;
+            };
+            let thread = value.get("thread").and_then(|v| v.as_str()).unwrap_or_default();
+            let status = value.get("status").and_then(|v| v.as_str()).unwrap_or_default();
+            *captured_clone.lock().expect("lock") = Some((thread.to_string(), status.to_string()));
+        });
+
+        let session_id = Uuid::new_v4();
+        let join_err = tokio::runtime::Runtime::new()
+            .expect("runtime")
+            .block_on(async {
+                tokio::spawn(async { panic!("provider task died") })
+                    .await
+                    .expect_err("task should panic")
+            });
+
+        let (text, detail) =
+            collect_thread_text(Err(join_err), session_id, "answer", &app);
+        assert!(text.is_empty());
+        assert!(detail
+            .expect("panic detail")
+            .contains("task panicked"));
+
+        let (thread, status) = captured.lock().expect("lock").clone().expect("thread_status");
+        assert_eq!(thread, "answer");
+        assert_eq!(status, "error");
+    }
 }
