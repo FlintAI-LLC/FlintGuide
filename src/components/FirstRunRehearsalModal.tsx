@@ -59,21 +59,21 @@ export default function FirstRunRehearsalModal({
 
         <p className="first-run-modal__body">
           Before your real interview, run a quick <strong>Test Live Session</strong> from
-          Rehearsal. Flint checks Private Mode, microphone routing, API keys, and audio
+          Rehearsal. FlintGuide checks Private Mode, microphone routing, API keys, and audio
           isolation (or phone-interview settings), then offers a 60-second audio preview
           with no AI responses.
         </p>
 
         <p className="first-run-modal__body">
           Rehearsal is where you turn prep into answers you can actually say in the
-          interview. Flint drafts from your pasted context — then you edit and save
+          interview. FlintGuide drafts from your pasted context — then you edit and save
           each answer as your <strong>preferred answer</strong>. Those saved scripts
           appear instantly during Live when the same question is asked.
         </p>
 
         <ol className="first-run-modal__steps">
           <li>Ask a question from the bank or type your own.</li>
-          <li>Review Flint&apos;s draft — fix anything that doesn&apos;t sound like you.</li>
+          <li>Review FlintGuide&apos;s draft — fix anything that doesn&apos;t sound like you.</li>
           <li>Save your tailored version as a preferred answer for Live.</li>
         </ol>
 

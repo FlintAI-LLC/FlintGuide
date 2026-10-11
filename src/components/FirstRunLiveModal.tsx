@@ -38,7 +38,7 @@ export default function FirstRunLiveModal({ onDismiss }: FirstRunLiveModalProps)
         <h2 className="first-run-modal__title">Before you go live</h2>
 
         <p className="first-run-modal__body">
-          Flint listens in the background and drafts answers in four panels:
+          FlintGuide listens in the background and drafts answers in four panels:
           Transcript, Answer, Visual, and Context. Nothing is sent to the
           interviewer — only you see the overlay.
         </p>
@@ -46,7 +46,7 @@ export default function FirstRunLiveModal({ onDismiss }: FirstRunLiveModalProps)
         <ol className="first-run-modal__steps">
           <li>
             <strong>Transcript</strong> — live speech with per-line speaker labels.
-            Swap any mislabeled line before asking Flint to respond.
+            Swap any mislabeled line before asking FlintGuide to respond.
           </li>
           <li>
             <strong>Answer</strong> — concise response draft for the current question.

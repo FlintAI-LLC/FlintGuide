@@ -1,8 +1,8 @@
 [package]
 name = "flint"
 version = "0.1.0"
-description = "Flint — real-time AI co-pilot desktop app"
-authors = ["Flint"]
+description = "FlintGuide — real-time AI co-pilot desktop app"
+authors = ["Flint AI"]
 edition = "2021"
 default-run = "flint"
 

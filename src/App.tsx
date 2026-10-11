@@ -509,7 +509,7 @@ function App() {
   if (screen === "loading") {
     return (
       <main className="app-loading" data-testid="app-loading">
-        <p>Loading Flint…</p>
+        <p>Loading FlintGuide…</p>
       </main>
     );
   }
@@ -735,28 +735,16 @@ function App() {
           sessionId={sessionId}
           resetPanelsOnEntry={resetRehearsalPanels}
           onResetPanelsHandled={() => setResetRehearsalPanels(false)}
-          onComplete={() => {
-            void (async () => {
-              try {
-                await startLivePreview(sessionId);
-                setScreen("live-preview");
-              } catch (err: unknown) {
-                setImportError(String(err));
-              }
-            })();
+          onComplete={async () => {
+            await startLivePreview(sessionId);
+            setScreen("live-preview");
           }}
           onReturnToSetup={() => void handleReturnToSessionDesign()}
           onOpenSettings={() => openSettings("rehearsal", "session-focus")}
           onStartMock={() => setScreen("mock-interview")}
-          onStartLivePreviewTest={() => {
-            void (async () => {
-              try {
-                await startLivePreview(sessionId, true);
-                setScreen("live-preview");
-              } catch (err: unknown) {
-                setImportError(String(err));
-              }
-            })();
+          onStartLivePreviewTest={async () => {
+            await startLivePreview(sessionId, true);
+            setScreen("live-preview");
           }}
         />
       </Shell>
@@ -833,7 +821,7 @@ function App() {
 
   return (
     <main className="container" data-testid="app-shell">
-      <p>Flint</p>
+      <p>FlintGuide</p>
     </main>
   );
 }

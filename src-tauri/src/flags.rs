@@ -347,7 +347,7 @@ pub fn evaluate(flag: &FeatureFlag, ctx: &EvaluationContext) -> bool {
 }
 
 /// Deterministic 64-bit FNV-1a hash of a UUID. Identical across processes
-/// and Flint releases — the rollout bucket assignment must not drift when
+/// and FlintGuide releases — the rollout bucket assignment must not drift when
 /// the user reopens the app.
 pub fn stable_hash(id: Uuid) -> u64 {
     const FNV_OFFSET: u64 = 0xcbf2_9ce4_8422_2325;

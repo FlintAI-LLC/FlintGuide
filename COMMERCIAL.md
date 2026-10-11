@@ -1,6 +1,6 @@
 # Commercial Licensing
 
-Flint is distributed under the Business Source License 1.1 (`LICENSE` at repo
+FlintGuide is distributed under the Business Source License 1.1 (`LICENSE` at repo
 root).
 
 Under this license, personal, non-commercial, and internal evaluation use is
@@ -11,7 +11,7 @@ commercial license from the Licensor.
 
 You need a commercial license if you:
 
-- offer Flint as a paid or revenue-generating service
+- offer FlintGuide as a paid or revenue-generating service
 - include it in a hosted offering for customers or clients
 - embed it in a commercial SaaS workflow for third-party users
 - redistribute a commercial derivative in production

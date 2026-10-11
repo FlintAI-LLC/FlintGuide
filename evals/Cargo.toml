@@ -3,7 +3,7 @@ name = "evals"
 version = "0.1.0"
 edition = "2021"
 publish = false
-description = "Flint prompt evaluation harness — runs the 200-question bank against every prompt variant and gates merges on regression."
+description = "FlintGuide prompt evaluation harness — runs the 200-question bank against every prompt variant and gates merges on regression."
 
 [lib]
 name = "evals"

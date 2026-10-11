@@ -151,7 +151,7 @@ fn is_user_facing_auth_message(msg: &str) -> bool {
         msg,
         "Invalid credentials"
             | "Too many attempts, try again later"
-            | "Flint could not reach the auth service. Check your connection."
+            | "FlintGuide could not reach the auth service. Check your connection."
             | "Authentication failed. Please try again."
             | "Could not read credentials. Please log in again."
             | "Could not save credentials. Please try again."
@@ -884,7 +884,12 @@ pub async fn ingest_context(
             })
             .collect();
 
-        // ── 4. Ingest into vector store ──────────────────────────────────────
+        // ── 4. Replace prior vectors, then ingest ────────────────────────────
+        state
+            .vector_store
+            .delete_session(sid)
+            .await
+            .map_err(|e| format!("Failed to clear prior vector store: {e}"))?;
         state
             .vector_store
             .ingest(sid, chunks)
@@ -1025,7 +1030,14 @@ pub async fn ingest_structured_context(
         .map_err(|e| format!("Embedder task panicked: {e}"))?
         .map_err(|e| format!("Embedding failed: {e}"))?;
 
-        // ── 2. Ingest into vector store ───────────────────────────────────────
+        // ── 2. Replace prior vectors, then ingest ─────────────────────────────
+        // Re-Extract used to APPEND chunks, so old JD scrapes / Round-1 notes
+        // kept ranking in Live RAG. Clear session vectors first.
+        state
+            .vector_store
+            .delete_session(sid)
+            .await
+            .map_err(|e| format!("Failed to clear prior vector store: {e}"))?;
         let refs: Vec<&str> = raw_chunks.iter().map(|s| s.as_str()).collect();
         let chunks: Vec<Chunk> = refs
             .iter()
@@ -5162,7 +5174,7 @@ pub struct ReviewChunkDto {
 }
 
 /// Read-only review payload for a past session: the full transcript plus
-/// counts of the AI suggestions Flint generated. Lets the user revisit what
+/// counts of the AI suggestions FlintGuide generated. Lets the user revisit what
 /// was asked and answered without digging through SQLite by hand.
 #[derive(Debug, Clone, serde::Serialize)]
 #[serde(rename_all = "camelCase")]

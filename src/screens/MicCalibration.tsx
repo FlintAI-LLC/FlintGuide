@@ -173,7 +173,7 @@ export default function MicCalibration({ onComplete, forceRetest = false, phoneC
         <div className="mic-calibration-warning" role="alert">
           <strong>Mic check did not meet the accuracy target.</strong>
           <p>
-            Flint heard you, but the read-back did not match the test paragraph closely enough.
+            FlintGuide heard you, but the read-back did not match the test paragraph closely enough.
             This is often caused by technical terms (OAuth, Kerberos, etc.) rather than a bad
             microphone. Live interview answers are usually easier for transcription.
           </p>
@@ -191,7 +191,7 @@ export default function MicCalibration({ onComplete, forceRetest = false, phoneC
             </p>
             {micResult.transcript.trim() && (
               <details className="mic-calibration-details" open>
-                <summary>What Flint heard</summary>
+                <summary>What FlintGuide heard</summary>
                 <blockquote className="mic-calibration-paragraph">{micResult.transcript}</blockquote>
               </details>
             )}
@@ -241,7 +241,7 @@ export default function MicCalibration({ onComplete, forceRetest = false, phoneC
         <h2>Calibration passed</h2>
         <p>
           If your transcription quality drops during a session, an amber badge labelled
-          &quot;Mic quality low&quot; will appear in the bottom-right corner of your Flint overlay.
+          &quot;Mic quality low&quot; will appear in the bottom-right corner of your FlintGuide overlay.
           Move to a quieter space or plug in a headset if you see it.
         </p>
       </section>
@@ -261,17 +261,17 @@ export default function MicCalibration({ onComplete, forceRetest = false, phoneC
       {isSystem ? (
         <>
           <p>
-            Flint will play a short clip through your speakers and capture it via system audio
+            FlintGuide will play a short clip through your speakers and capture it via system audio
             loopback — the same path used in live sessions.{" "}
             <strong>You do not need to speak during this step.</strong>
           </p>
           <details className="mic-calibration-details">
-            <summary>How does Flint hear the interviewer?</summary>
+            <summary>How does FlintGuide hear the interviewer?</summary>
             <div className="mic-calibration-details-body">
               <p>
-                Flint listens to <strong>system audio output</strong> — whatever plays through
+                FlintGuide listens to <strong>system audio output</strong> — whatever plays through
                 your speakers or headset — not your microphone. During a phone screen or video
-                call, the interviewer&apos;s voice plays through your headset, and Flint captures
+                call, the interviewer&apos;s voice plays through your headset, and FlintGuide captures
                 that audio to detect questions and generate responses.
               </p>
               <p>
@@ -292,11 +292,11 @@ export default function MicCalibration({ onComplete, forceRetest = false, phoneC
                 <li>
                   <strong>PULSE_SOURCE:</strong> if the test still times out, run{" "}
                   <code>export PULSE_SOURCE=&quot;$(pactl get-default-sink).monitor&quot;</code>{" "}
-                  in the terminal before launching Flint.
+                  in the terminal before launching FlintGuide.
                 </li>
               </ul>
               <p>
-                <strong>Phone interview on mobile?</strong> Flint cannot capture a call taken on
+                <strong>Phone interview on mobile?</strong> FlintGuide cannot capture a call taken on
                 your phone. Use a softphone (e.g. Google Meet, Zoom, or a browser-based VoIP) on
                 your computer so the audio routes through system output.
               </p>
@@ -312,7 +312,7 @@ export default function MicCalibration({ onComplete, forceRetest = false, phoneC
                 {micParagraphText}
               </blockquote>
               <p style={{ fontSize: "0.875rem", color: "#6b7280" }}>
-                Read it once through — Flint will start listening as soon as you click the button below.
+                Read it once through — FlintGuide will start listening as soon as you click the button below.
               </p>
             </>
           ) : (

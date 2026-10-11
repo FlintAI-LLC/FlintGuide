@@ -97,6 +97,8 @@ const IN_PROGRESS_STATES = new Set([
   "REHEARSING",
   "MOCK_INTERVIEW",
   "READY",
+  // Stuck / abandoned preview — still resumable via reopen_session.
+  "LIVE_PREVIEW",
 ]);
 
 /** Sessions that can be re-bound via `reopen_session` (everything except orphan IDLE rows). */

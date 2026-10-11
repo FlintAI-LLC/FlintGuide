@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign in to Flint</title>
+    <title>Sign in to FlintGuide</title>
     <style>
       body {
         font-family: system-ui, -apple-system, sans-serif;
@@ -70,10 +70,10 @@
   </head>
   <body data-oauth-callback-version="3">
     <div class="card">
-      <h1 id="title">Signing in to Flint…</h1>
+      <h1 id="title">Signing in to FlintGuide…</h1>
       <p id="body"></p>
       <div class="actions" id="actions" style="display:none">
-        <button type="button" class="btn" id="btn-open">Switch to Flint</button>
+        <button type="button" class="btn" id="btn-open">Switch to FlintGuide</button>
       </div>
     </div>
 
@@ -92,13 +92,13 @@
         var btn     = document.getElementById("btn-open");
 
         // ── Error / cancel path ────────────────────────────────────────────
-        // Google cancelled or denied. Forward the error to Flint silently,
+        // Google cancelled or denied. Forward the error to FlintGuide silently,
         // then tell the user to switch back. No button needed — the error has
-        // already been delivered and Flint will clear "Waiting for Google…".
+        // already been delivered and FlintGuide will clear "Waiting for Google…".
         if (hasError) {
           title.textContent = "Sign-in cancelled";
           body.innerHTML =
-            "Flint has been notified. Switch back to the Flint window — " +
+            "FlintGuide has been notified. Switch back to the FlintGuide window — " +
             "you can try again or sign in with email instead.<br><br>" +
             "<span class='dimmed'>You can close this browser tab when you're done.</span>";
           window.location.href = target;
@@ -107,21 +107,21 @@
 
         // ── Success path ───────────────────────────────────────────────────
         // Google auth succeeded. Navigate to flint:// to trigger the OS
-        // "Open Flint?" dialog.
+        // "Open FlintGuide?" dialog.
         var attempts = 0;
 
         function showWaitingForDialog() {
           title.textContent = "Almost there";
           body.innerHTML =
             "<span class='spinner'></span>" +
-            "Click <strong>Open Flint</strong> in the dialog that just appeared, " +
+            "Click <strong>Open FlintGuide</strong> in the dialog that just appeared, " +
             "then close this tab with <strong>Ctrl+W</strong>.";
         }
 
         function showDialogCancelled() {
-          title.textContent = "Open Flint to finish signing in";
+          title.textContent = "Open FlintGuide to finish signing in";
           body.innerHTML =
-            "The system dialog was dismissed. Click <strong>Switch to Flint</strong> below to bring it back, " +
+            "The system dialog was dismissed. Click <strong>Switch to FlintGuide</strong> below to bring it back, " +
             "then close this browser tab with <strong>Ctrl+W</strong>.";
           actions.style.display = "block";
         }

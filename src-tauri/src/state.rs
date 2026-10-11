@@ -242,7 +242,7 @@ pub struct AppState {
 
     /// Pending Smart Resume import token captured at cold start before the
     /// React WebView mounted. React polls this once via `get_pending_import_token`
-    /// and clears it. The warm path (second click, Flint already running) still
+    /// and clears it. The warm path (second click, FlintGuide already running) still
     /// uses the `smart_resume_import_token` event emitted by `single_instance`.
     pub pending_import_token: Mutex<Option<String>>,
 

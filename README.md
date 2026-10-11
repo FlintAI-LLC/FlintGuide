@@ -1,10 +1,11 @@
-# Flint
+# FlintGuide
 <p align="center">
-  <img src="src/assets/flint-hero.png" alt="Flint hero" width="720" />
+  <img src="src/assets/flint-hero.png" alt="FlintGuide hero" width="720" />
 </p>
-Real-time AI co-pilot desktop app for live conversations (e.g. job interviews). Flint listens to system audio, transcribes locally, and surfaces parallel AI guidance in a private overlay — invisible to the other party.
+Real-time AI co-pilot desktop app for live conversations (e.g. job interviews). FlintGuide listens to system audio, transcribes locally, and surfaces parallel AI guidance in a private overlay — on your machine, under your control.
 
-**Repository:** [github.com/abzanganeh/flint](https://github.com/abzanganeh/flint)
+**Product site:** [guide.theflintai.com](https://guide.theflintai.com)  
+**Repository:** [github.com/abzanganeh/flint](https://github.com/abzanganeh/flint) (codebase name stays `flint`)
 
 ## What it does
 
@@ -138,7 +139,7 @@ Work happens on **feature branches** (one meaningful implementation chunk per br
 
 ## License
 
-Flint is licensed under the [Business Source License 1.1](LICENSE) (BSL 1.1).
+FlintGuide is licensed under the [Business Source License 1.1](LICENSE) (BSL 1.1).
 Personal, non-commercial, and internal evaluation use is permitted. Commercial
 production use requires a separate license — see [COMMERCIAL.md](COMMERCIAL.md).
 

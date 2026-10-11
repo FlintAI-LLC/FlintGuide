@@ -463,9 +463,11 @@ fn load_wav_samples(path: &str) -> anyhow::Result<Vec<f32>> {
         .unwrap_or(0);
 
     let samples: Vec<f32> = pcm_bytes[data_offset..]
-        .chunks_exact(2)
+        .as_chunks::<2>()
+        .0
+        .iter()
         .map(|b| {
-            let s = i16::from_le_bytes([b[0], b[1]]);
+            let s = i16::from_le_bytes(*b);
             s as f32 / 32_768.0
         })
         .collect();

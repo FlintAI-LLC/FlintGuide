@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Flint",
+  "productName": "FlintGuide",
   "version": "0.1.0",
   "identifier": "com.flint.app",
   "build": {
@@ -13,7 +13,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "Flint",
+        "title": "FlintGuide",
         "width": 800,
         "height": 600,
         "alwaysOnTop": true,

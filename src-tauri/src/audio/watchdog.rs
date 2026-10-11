@@ -3,7 +3,7 @@
 //! A live session can silently capture nothing — the user picks the wrong
 //! loopback/mic device, the OS revokes the stream, or (as happened in the
 //! field) the overlay enters LIVE but no frames ever arrive. Without a signal,
-//! the user believes they are recording an interview while Flint persists zero
+//! the user believes they are recording an interview while FlintGuide persists zero
 //! transcript chunks and produces no summary.
 //!
 //! The watchdog polls the existing [`AudioAuditCounters`] after going LIVE. If
@@ -29,7 +29,7 @@ pub const WATCHDOG_TICK: Duration = Duration::from_secs(4);
 
 const NO_AUDIO_MESSAGE: &str = "No audio captured yet — nothing is being recorded. \
 Check that the correct loopback (interviewer) and microphone devices are selected, \
-then restart the session. In phone mode, make sure the call audio is routed to Flint.";
+then restart the session. In phone mode, make sure the call audio is routed to FlintGuide.";
 
 /// What the watchdog decided to emit on a given tick.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

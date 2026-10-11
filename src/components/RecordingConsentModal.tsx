@@ -16,7 +16,7 @@ export default function RecordingConsentModal({
       <div className="first-run-modal" data-testid="recording-consent-modal">
         <h2 className="first-run-modal__title">Recording consent required</h2>
         <p className="first-run-modal__body">
-          Flint transcribes conversation audio locally to assist you during a live
+          FlintGuide transcribes conversation audio locally to assist you during a live
           session. Laws vary by location: some jurisdictions require every participant
           to consent before a conversation is recorded or transcribed.
         </p>

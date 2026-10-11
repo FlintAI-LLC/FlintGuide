@@ -230,7 +230,7 @@ function AccountTab({
     <div className="settings-tab">
       <h3 className="settings-tab__heading">Account</h3>
       <p className="settings-tab__description">
-        Manage your Flint sign-in on this device.
+        Manage your FlintGuide sign-in on this device.
       </p>
 
       {error && (
@@ -262,7 +262,7 @@ function AccountTab({
       <section className="settings-tab__section">
         <h4 className="settings-tab__subheading">Display zoom</h4>
         <p className="settings-tab__description">
-          Scale Flint&apos;s UI larger or smaller on this device. Applies immediately across
+          Scale FlintGuide&apos;s UI larger or smaller on this device. Applies immediately across
           all screens.
         </p>
         <label className="settings-tab__field settings-tab__field--zoom">
@@ -308,7 +308,7 @@ function AccountTab({
       <section className="settings-tab__section">
         <h4 className="settings-tab__subheading">Sign out</h4>
         <p className="settings-tab__description">
-          Sign out of your Flint account on this device. Local sessions and API keys
+          Sign out of your FlintGuide account on this device. Local sessions and API keys
           in your OS keychain are kept until you delete your account.
         </p>
         <button
@@ -588,7 +588,7 @@ function SessionFocusTab({ sessionId }: { sessionId: string | null | undefined }
       <label className="settings-tab__field">
         <span className="settings-tab__label">Interview round</span>
         <select
-          className="settings-tab__input"
+          className="settings-tab__input settings-tab__select"
           data-testid="settings-focus-round-type"
           value={focus.roundType}
           onChange={(e) => setFocus({ ...focus, roundType: e.target.value })}
@@ -665,8 +665,8 @@ function SessionFocusTab({ sessionId }: { sessionId: string | null | undefined }
         </label>
         <span className="settings-tab__hint">
           {phoneCallMode
-            ? "Flint listens via microphone. Put the caller on speaker near your laptop."
-            : "Flint listens via system audio loopback (Zoom, Meet, or browser calls)."}
+            ? "FlintGuide listens via microphone. Put the caller on speaker near your laptop."
+            : "FlintGuide listens via system audio loopback (Zoom, Meet, or browser calls)."}
         </span>
       </label>
 
@@ -679,7 +679,7 @@ function SessionFocusTab({ sessionId }: { sessionId: string | null | undefined }
         </p>
         {downloadingDiarizationModels ? (
           <p className="settings-tab__hint" data-testid="diarization-models-downloading">
-            Downloading speaker models… This may take 5–15 minutes on a slow connection. Flint
+            Downloading speaker models… This may take 5–15 minutes on a slow connection. FlintGuide
             stays responsive; do not close the app.
           </p>
         ) : null}
@@ -758,7 +758,7 @@ function FeatureFlagsTab() {
     <div className="settings-tab">
       <h3 className="settings-tab__heading">Feature flags</h3>
       <p className="settings-tab__description">
-        Read-only view of rollout flags for your account. Flint refreshes flags at
+        Read-only view of rollout flags for your account. FlintGuide refreshes flags at
         launch; use sync when support asks you to pull the latest configuration.
       </p>
 

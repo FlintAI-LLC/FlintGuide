@@ -308,7 +308,7 @@ export interface SessionConfigDto {
   domain: string;
   /**
    * When true the interviewer is on a phone call near the laptop.
-   * Flint captures both channels from the microphone and skips
+   * FlintGuide captures both channels from the microphone and skips
    * the system audio loopback calibration phase.
    */
   phoneCallMode?: boolean;
@@ -339,7 +339,7 @@ export const importFromSmartResume = (
 
 /**
  * Return and clear the cold-start import token stored by Rust before the
- * WebView mounted. Returns null if Flint was opened without a deep link, or
+ * WebView mounted. Returns null if FlintGuide was opened without a deep link, or
  * after the first call. Used in bootstrap; warm-path uses the event listener.
  */
 export const getPendingImportToken = (): Promise<string | null> =>

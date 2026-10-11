@@ -46,7 +46,7 @@ export default function TitleBar({ nav }: TitleBarProps) {
   return (
     <div className="titlebar" data-tauri-drag-region>
       <div className="titlebar-left" data-tauri-drag-region>
-        <span className="titlebar-brand">Flint</span>
+        <span className="titlebar-brand">FlintGuide</span>
       </div>
 
       {nav && nav.length > 0 && (

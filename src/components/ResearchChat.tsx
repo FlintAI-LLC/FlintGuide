@@ -185,7 +185,7 @@ export default function ResearchChat({ sessionId }: ResearchChatProps) {
         {messages.length === 0 && (
           <p className="research-chat__empty">
             Ask about your meeting criteria, technical topics, or company research.
-            Flint checks your pasted context first; if it&apos;s not there, it searches
+            FlintGuide checks your pasted context first; if it&apos;s not there, it searches
             the web (requires Tavily key in Settings). Save useful answers into
             Technical Prep with &quot;Add to session context&quot;.
           </p>

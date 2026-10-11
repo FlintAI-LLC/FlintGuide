@@ -20,7 +20,7 @@
 //! ## Why not transactional?
 //!
 //! The four backends live in different processes and trust boundaries.
-//! Treating them transactionally would require a distributed protocol Flint
+//! Treating them transactionally would require a distributed protocol FlintGuide
 //! does not have. The pragmatic alternative is to always clear local state
 //! eagerly — that satisfies the strict GDPR requirement that local copies
 //! be removed immediately — and to surface server-side failures to the
@@ -146,7 +146,7 @@ pub async fn delete_account(
 }
 
 /// Wrapper for the data shape returned by [`export_user_data`]. Includes
-/// schema versioning so future Flint versions can refuse to import payloads
+/// schema versioning so future FlintGuide versions can refuse to import payloads
 /// from incompatible builds.
 #[derive(Debug, Clone, Serialize)]
 pub struct UserDataExport {

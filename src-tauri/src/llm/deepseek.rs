@@ -13,7 +13,7 @@ const DEFAULT_MODEL: &str = "deepseek-chat";
 const CONTEXT_WINDOW: usize = 64_000;
 const RATE_LIMIT_RPM: u32 = 48;
 const RATE_LIMIT_TPM: u32 = 48_000;
-const USER_AGENT: &str = "Flint/1.0 (https://github.com/abzanganeh/flint)";
+const USER_AGENT: &str = "FlintGuide/1.0 (https://github.com/abzanganeh/flint)";
 
 pub fn deepseek_config() -> OpenAiCompatConfig {
     OpenAiCompatConfig {

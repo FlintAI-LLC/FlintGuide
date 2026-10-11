@@ -71,7 +71,7 @@ export function isAnswerGroundedInContext(
 }
 
 /**
- * True when Flint likely answered without a user-specific story in context.
+ * True when FlintGuide likely answered without a user-specific story in context.
  * Uses orchestrator confidence plus whether the answer overlaps RAG.
  * Grey confidence alone does not imply a missing story.
  */

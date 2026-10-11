@@ -1,4 +1,4 @@
-//! Session state machine — the single source of truth for the Flint session
+//! Session state machine — the single source of truth for the FlintGuide session
 //! lifecycle.
 //!
 //! Reference: design doc §25 (Session State Machine), `.cursor/rules`
@@ -25,7 +25,7 @@ use anyhow::{anyhow, Context, Result};
 use tracing::{info, warn};
 use uuid::Uuid;
 
-/// Canonical lifecycle states for a Flint session.
+/// Canonical lifecycle states for a FlintGuide session.
 ///
 /// The string form (`as_str` / `Display`) is the wire format used by the
 /// `session_state_change` Tauri event and by the SQLite `sessions.status`

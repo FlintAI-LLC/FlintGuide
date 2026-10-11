@@ -1,4 +1,4 @@
-# Flint eval harness
+# FlintGuide eval harness
 
 Phase 7.2 deliverable. Runs the 200-question bank against every prompt
 variant under `prompts/` and produces structured scores for relevance,

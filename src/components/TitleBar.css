@@ -24,11 +24,10 @@
 }
 
 .titlebar-brand {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: #6366f1;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .titlebar-nav {

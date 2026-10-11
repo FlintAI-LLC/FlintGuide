@@ -27,16 +27,16 @@ Hotkeys: **Ctrl+Alt+Space** (tap / hold / double), **Ctrl+Alt+Shift+Space** (pan
 
 | # | Test | Result | Notes |
 |---|------|--------|-------|
-| 1 | Tap trigger | Pass | After fixes; Flint must be focused on Wayland |
+| 1 | Tap trigger | Pass | After fixes; FlintGuide must be focused on Wayland |
 | 2 | Hold → Answer Now | Pass | |
 | 3 | Double-tap cancel | Pass | Works in REHEARSING after fix |
 | 4 | Panic hide | Pass | PanicRestoreShell — full chrome hide; re-test C1 2026-06-16 |
-| 5 | OBS capture | Partial | Full monitor capture includes Flint (Wayland limitation) |
+| 5 | OBS capture | Partial | Full monitor capture includes FlintGuide (Wayland limitation) |
 | 6a | 1920×1080 | Pass | |
 | 6b | 4K | Partial | Readable but small at 3840×2160 |
-| 7 | Private Mode 3 tools | Partial | Screenshot tools capture Flint on Wayland |
+| 7 | Private Mode 3 tools | Partial | Screenshot tools capture FlintGuide on Wayland |
 
-**Wayland constraint:** Global hotkeys only work when Flint is focused unless portal/CLI integration is added.
+**Wayland constraint:** Global hotkeys only work when FlintGuide is focused unless portal/CLI integration is added.
 
 ## Fixes Landed on Branch
 
@@ -45,7 +45,7 @@ Hotkeys: **Ctrl+Alt+Space** (tap / hold / double), **Ctrl+Alt+Shift+Space** (pan
 | 8.10 MockSummary | Skipped badge + count; WAV playback via asset protocol + single mock_turn row |
 | 8.9 Shuffle | `shuffle.rs` + UI toggle; follow-up turns in conductor |
 | Pre-warm | Guard against raw digest JSON in Directional/Depth panels |
-| Panic | `PanicRestoreShell` — only "Show Flint" pill when overlay hidden |
+| Panic | `PanicRestoreShell` — only "Show FlintGuide" pill when overlay hidden |
 | Hotkeys | Tap on keyup, hold at 2s; cancel in REHEARSING; Wayland focused fallback |
 | Rehearsal UX | Prep-before-live copy, skip confirm, de-emphasized go-live |
 | Settings | Sign out button (Account tab) |
@@ -81,7 +81,7 @@ Loop message when both pass:
 
 ### Block C — P0 Regressions
 
-- [x] **C1** Panic (Ctrl+Alt+Shift+Space): only "Show Flint" pill visible in Rehearsal and LIVE
+- [x] **C1** Panic (Ctrl+Alt+Shift+Space): only "Show FlintGuide" pill visible in Rehearsal and LIVE
 - [x] **C2** Pre-warm / Directional: no raw digest JSON in panel text
 - [x] **C3** Test 14: Rehearsal → Go live still works (+ panel reset — no rehearsal carry-over in live panels)
 
@@ -151,7 +151,7 @@ ls ~/.local/share/com.flint.app/mock_audio/
 
 ```bash
 secret-tool clear service flint account auth_token_*
-# restart Flint
+# restart FlintGuide
 ```
 
 Sign out is in **Settings → Account → Sign out**.

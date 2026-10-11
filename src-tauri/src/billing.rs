@@ -75,7 +75,7 @@ fn billing_access_error(plan: Plan) -> String {
                             Pro includes higher session limits; inference still uses your keys in v1."
             .to_string(),
         BillingTier::FreeByok => "Add a cloud LLM API key in Settings → API Keys to start a live session. \
-                                  Flint v1 uses bring-your-own-key billing — no metered credits."
+                                  FlintGuide v1 uses bring-your-own-key billing — no metered credits."
             .to_string(),
     }
 }

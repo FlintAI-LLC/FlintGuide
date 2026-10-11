@@ -181,7 +181,7 @@ pub struct SessionConfigDto {
     /// e.g. "software engineering" | "product management"
     pub domain: String,
     /// When true the interviewer is on a phone call near the laptop.
-    /// Flint captures both channels from the microphone instead of
+    /// FlintGuide captures both channels from the microphone instead of
     /// system audio loopback, and skips the system audio calibration phase.
     #[serde(default)]
     pub phone_call_mode: bool,
@@ -191,7 +191,7 @@ pub struct SessionConfigDto {
 ///
 /// Optional — only present when Smart Resume successfully extracted signals
 /// (mission, values, culture) from the JD text before minting the handoff
-/// token.  Flint appends this as structured text to the session context so
+/// token.  FlintGuide appends this as structured text to the session context so
 /// the digest LLM can surface employer values in `{interviewer_priorities}`.
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 #[serde(rename_all = "camelCase")]

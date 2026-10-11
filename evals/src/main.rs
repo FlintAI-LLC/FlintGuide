@@ -28,7 +28,7 @@ use evals::report::Report;
 use evals::runner::{EvalRunner, EvalRunnerConfig, PromptVariant};
 
 #[derive(Debug, Parser)]
-#[command(name = "evals", version, about = "Flint prompt evaluation harness")]
+#[command(name = "evals", version, about = "FlintGuide prompt evaluation harness")]
 struct Cli {
     /// Directory containing per-domain question JSON files.
     #[arg(long, default_value = "evals/questions")]

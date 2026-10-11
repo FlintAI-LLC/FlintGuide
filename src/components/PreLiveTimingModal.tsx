@@ -3,7 +3,7 @@ export interface PreLiveTimingModalProps {
 }
 
 /**
- * Shown when entering Rehearsal or Mock Interview — users must start Flint live
+ * Shown when entering Rehearsal or Mock Interview — users must start FlintGuide live
  * early enough to complete consent and setup popups before the real call.
  */
 export default function PreLiveTimingModal({ onDismiss }: PreLiveTimingModalProps) {
@@ -13,7 +13,7 @@ export default function PreLiveTimingModal({ onDismiss }: PreLiveTimingModalProp
         <h2 className="first-run-modal__title">Start live early</h2>
 
         <p className="first-run-modal__body">
-          Open your <strong>live Flint session at least 2 minutes before</strong> your
+          Open your <strong>live FlintGuide session at least 2 minutes before</strong> your
           scheduled interview time. Before audio begins you will need to:
         </p>
 

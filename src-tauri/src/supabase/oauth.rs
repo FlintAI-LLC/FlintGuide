@@ -18,7 +18,7 @@ use super::auth::SupabaseAuth;
 pub const OAUTH_REDIRECT_URI: &str = "flint://auth/callback";
 
 /// Dev bridge page — avoids hanging the browser on a raw `flint://` navigation when
-/// the user cancels the OS "Open Flint?" dialog.
+/// the user cancels the OS "Open FlintGuide?" dialog.
 #[cfg(debug_assertions)]
 pub const DEV_OAUTH_BRIDGE_URI: &str = "http://127.0.0.1:1420/oauth-callback.html";
 

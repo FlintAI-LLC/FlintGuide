@@ -24,7 +24,7 @@ export default function LiveReadinessModal({
       <div className="first-run-modal" data-testid="live-readiness-modal">
         <h2 className="first-run-modal__title">Live session readiness</h2>
         <p className="first-run-modal__body">
-          Flint checked your device, audio routing, API keys, and Private Mode
+          FlintGuide checked your device, audio routing, API keys, and Private Mode
           requirements before you go live.
         </p>
 

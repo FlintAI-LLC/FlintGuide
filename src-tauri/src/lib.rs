@@ -1,3 +1,9 @@
+// `#[async_trait]` desugars every trait method to a `Pin<Box<dyn Future>>` and
+// stamps its own `#[must_use]` on it. The future type is already `#[must_use]`,
+// so clippy 1.99+ flags the macro's output as a double annotation. We never
+// write `#[must_use]` ourselves and cannot change the expansion.
+#![allow(clippy::double_must_use)]
+
 pub mod audio;
 mod auth_session;
 pub mod billing;

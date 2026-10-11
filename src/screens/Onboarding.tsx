@@ -12,13 +12,13 @@ import { onAuthOAuthComplete, onAuthOAuthError } from "../events";
 import { SessionState } from "../types";
 import "./Onboarding.css";
 
-const LEGAL_DISCLAIMER = `Flint is an AI-powered advisory tool designed to help you prepare and perform better in conversations. By using Flint, you acknowledge and agree to the following:
+const LEGAL_DISCLAIMER = `FlintGuide is an AI-powered advisory tool designed to help you prepare and perform better in conversations. By using FlintGuide, you acknowledge and agree to the following:
 
-All suggestions, responses, and guidance provided by Flint are AI-generated and carry a probability of error. Flint does not guarantee the accuracy, appropriateness, or completeness of any response.
+All suggestions, responses, and guidance provided by FlintGuide are AI-generated and carry a probability of error. FlintGuide does not guarantee the accuracy, appropriateness, or completeness of any response.
 
-You are solely responsible for the answers you give in any conversation, interview, examination, or meeting. You are solely responsible for the consequences of choosing to use any response Flint provides.
+You are solely responsible for the answers you give in any conversation, interview, examination, or meeting. You are solely responsible for the consequences of choosing to use any response FlintGuide provides.
 
-Flint is a supplementary preparation and support tool. It is not a replacement for your own knowledge, preparation, and judgment. You must be genuinely prepared for your meeting independently of Flint.
+FlintGuide is a supplementary preparation and support tool. It is not a replacement for your own knowledge, preparation, and judgment. You must be genuinely prepared for your meeting independently of FlintGuide.
 
 By proceeding, you accept full responsibility for your use of this tool.`;
 
@@ -179,7 +179,7 @@ const Onboarding = ({ onComplete, initialStep }: OnboardingProps) => {
           <h1 id="legal-title" className="onboarding-title">
             Legal notice
           </h1>
-          <p className="onboarding-subtitle">You must read and accept this before using Flint.</p>
+          <p className="onboarding-subtitle">You must read and accept this before using FlintGuide.</p>
           <div className="legal-text">
             {LEGAL_DISCLAIMER.split("\n\n").map((paragraph) => (
               <p key={paragraph.slice(0, 24)}>{paragraph}</p>
@@ -218,7 +218,7 @@ const Onboarding = ({ onComplete, initialStep }: OnboardingProps) => {
   return (
     <div className="onboarding" data-testid="onboarding-panel">
       <div className="onboarding-card">
-        <h1 className="onboarding-title">Welcome to Flint</h1>
+        <h1 className="onboarding-title">Welcome to FlintGuide</h1>
         <p className="onboarding-subtitle">Create an account or sign in to continue.</p>
 
         <button
@@ -233,7 +233,7 @@ const Onboarding = ({ onComplete, initialStep }: OnboardingProps) => {
         {oauthPending ? (
           <>
             <p className="oauth-wait-hint" data-testid="google-oauth-hint">
-              After you pick an account, choose <strong>Open Flint</strong> in the system dialog.
+              After you pick an account, choose <strong>Open FlintGuide</strong> in the system dialog.
               If you cancel that dialog, click <strong>Cancel sign-in</strong> below, close the
               browser tab, then try again.
             </p>

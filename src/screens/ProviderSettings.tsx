@@ -276,7 +276,7 @@ function ProviderPrioritySection() {
     <div className="provider-settings__primary">
       <h3 className="provider-settings__section-title">LLM Providers</h3>
       <p className="provider-settings__subtitle">
-        Reorder configured cloud providers. Flint tries them top-to-bottom; Ollama is always the
+        Reorder configured cloud providers. FlintGuide tries them top-to-bottom; Ollama is always the
         local last resort and cannot be moved.
       </p>
       {error && <p className="provider-settings__error">{error}</p>}

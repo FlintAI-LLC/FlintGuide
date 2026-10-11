@@ -1,6 +1,6 @@
 name: Eval Prompts
 
-# Runs the Flint eval harness whenever a prompt file is touched.
+# Runs the FlintGuide eval harness whenever a prompt file is touched.
 # Enforces the regression gate from .cursor/rules/flint-performance.mdc:
 #   - answer conciseness pass rate >= 95%
 #   - no per-domain relevance score below 0.7

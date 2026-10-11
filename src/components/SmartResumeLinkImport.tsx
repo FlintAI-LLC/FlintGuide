@@ -29,7 +29,7 @@ export default function SmartResumeLinkImport({ disabled = false, onImport }: Pr
       </summary>
       <div className="sr-link-import-body">
         <p className="sr-link-import-hint">
-          On Linux dev builds, deep links may not open Flint automatically. Copy the
+          On Linux dev builds, deep links may not open FlintGuide automatically. Copy the
           link from Smart Resume and paste it here.
         </p>
         <input
